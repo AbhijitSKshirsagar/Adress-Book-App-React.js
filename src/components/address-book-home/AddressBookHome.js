@@ -6,6 +6,7 @@ import Delete from "../../assets/icons/delete-black-18dp.svg";
 import Edit from "../../assets/icons/create-black-18dp.svg";
 import AddressBookService from "../../service/AddressBookService.js";
 
+
 class Home extends Component {
 
   constructor(props) {
@@ -36,7 +37,20 @@ class Home extends Component {
     this.props.history.push(`AddressBookForm/${id}`);
     console.log(id);
   };
-  
+
+  sortByCity() {
+    AddressBookService.sortByCity().then((response) => {
+      this.setState({ addressbook: response.data.data });
+    });
+  }
+
+  sortByState() {
+    AddressBookService.sortByState().then((response) => {
+      this.setState({ addressbook: response.data.data });
+    });
+  }
+
+
   render() {
     return (
       <div>
@@ -56,8 +70,10 @@ class Home extends Component {
               <th>Contact</th>
               <th>Email</th>
               <th>Address</th>
-              <th>City</th>
-              <th>State</th>
+              {/* <th>City</th> */}
+              {/* <th>State</th> */}
+              <th scope="col" onClick={() => this.sortByCity()}>City</th>
+              <th scope="col" onClick={() => this.sortByState()}>State</th>
               <th>ZipCode</th>
               <th>Country</th>
               <th>Action</th>

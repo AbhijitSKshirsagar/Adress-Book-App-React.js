@@ -22,6 +22,14 @@ class AddressBookService {
   deletePerson(personId) {
     return axios.delete(`${this.baseUrl}/${personId}`);
   }
-}
 
+  sortByCity() {
+    return axios.get(`${this.baseUrl}/sortByCity`);
+  }
+
+  sortByState() {
+    return axios.get(`${this.baseUrl}/sortByState`);
+  }
+
+}
 export default new AddressBookService();
